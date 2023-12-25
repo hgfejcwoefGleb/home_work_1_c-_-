@@ -1,0 +1,178 @@
+#include <iostream>
+/*task1*/
+void task1() {
+    const float* const con_con_ptr_float = nullptr;
+    typedef  long int* l_i_ptr;
+    double* d_ptr = nullptr;
+    const short int* ptr_shrt_int = nullptr;
+    typedef const float* const c_f_ptr;
+    typedef const char* c_ch_ptr;
+    double* const d_con_ptr = nullptr;
+    typedef unsigned int* uns_int_ptr;
+}
+/*task2*/
+void chose_mem(double **arr_ptr, int len) {
+    *arr_ptr = new double[len];
+    
+
+}
+void insert_data(double *arr_ptr, int len) {
+    for (int i = 0; i < len; i++) {
+        std::cout << "Enter " << i << " element of array " << std::endl;
+        double a = 0.;
+        std::cin >> a;
+        arr_ptr[i] = a;
+    }
+}
+void show_data(double *arr_ptr, int len) {
+    for (int i = 0; i < len; i++) {
+        std::cout << i << " element of array is " << arr_ptr[i] << std::endl;
+        
+    }
+}
+void del_inf(double **arr_ptr) {
+    delete[] *arr_ptr;
+    *arr_ptr = nullptr;
+}
+void task2() {
+    while (true) {
+        int length = 0;
+        std::cout << "Enter size of array" << std::endl;
+        std::cin >> length;
+        double* arr_ptr = new double[0];
+        delete[] arr_ptr;
+        chose_mem(&arr_ptr, length);
+        insert_data(arr_ptr, length);
+        show_data(arr_ptr, length);
+        del_inf(&arr_ptr);
+        std::cout << "Would you like to continue? Enter 1 if yes and 0 if no" << std::endl;
+        int choice = -1;
+        std::cin >> choice;
+        if (choice == 0)
+            break;
+        else if (choice == 1)
+            continue;
+    }
+}
+/*task 3*/
+void insert_data_int(int* arr_ptr, int len) {
+    for (int i = 0; i < len; i++) {
+        std::cout << "Enter " << i << " element of array " << std::endl;
+        double a = 0.;
+        std::cin >> a;
+        arr_ptr[i] = a;
+    }
+}
+void show_data_int(int* arr_ptr, int len) {
+    for (int i = 0; i < len; i++) {
+        std::cout << i << " element of array is " << arr_ptr[i] << std::endl;
+
+    }
+}
+void task3() {
+    int *arr = new int[12];
+    insert_data_int(arr, 12);
+    for (int i = 0; i < 12; i++) {
+        if (i == 11)
+            break;
+        else {
+            arr[i] = arr[i] - arr[i + 1];
+            arr[i + 1] = arr[i + 1] + arr[i];
+            arr[i] = arr[i + 1] - arr[i];
+        }
+    }
+    show_data_int(arr, 12);
+}
+/*task5*/
+int plus(int f, int s) {
+    return f + s;
+}
+int minus(int f, int s) {
+    return f - s;
+}
+int mult(int f, int s) {
+    return f * s;
+}
+int dev(int f, int s) {
+    return f / s;
+}
+void task5() {
+    int a = 0;
+    int b = 0;
+    std::string operation = "";
+    int(*ptr_pl)(int, int) = plus;
+    int(*ptr_mn)(int, int) = minus;
+    int(*ptr_mult)(int, int) = mult;
+    int(*ptr_dev)(int, int) = dev;
+    int res = 0;
+     while(operation != "quit") {
+        std::cout << "Enter first variable : " << std::endl;
+        std::cin >> a;
+        std::cout << "Enter second variable : " << std::endl;
+        std::cin >> b;
+        std::cout << "Enter sign of operation : " << std::endl;
+        std::cin >> operation;
+        if (operation == "quit") {
+            std::cout << operation << std::endl;
+            break;
+        }
+        if (operation == "+") {
+            res = ptr_pl(a, b);
+        }
+        if (operation == "-") {
+            res = ptr_mn(a, b);
+        }
+        if (operation == "*") {
+            res = ptr_mult(a, b);
+        }
+        if (operation == "/") {
+            res = ptr_dev(a, b);
+        }
+        std::cout << "Result is " << res << std::endl;
+
+    } 
+    
+    
+
+    
+}
+/*task 7*/
+class Solution {
+public:
+    int findLucky(vector<int>& arr) {
+        int num = -1;
+        for (int i = arr.size() - 1; i >= 0; i--)
+        {
+            if (arr[i] == count(arr.begin(), arr.end(), arr[i]))
+            {
+                if (arr[i] >= num) {
+                    num = arr[i];
+                }
+            }
+        }
+        return num;
+    }
+};
+/*task 8*/
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        for (int i = 0; i < nums.size(); ++i)
+        {
+            if (count(nums.begin(), nums.end(), nums[i]) > nums.size() / 2)
+            {
+                return nums[i];
+            }
+        }
+        return -1;
+
+    }
+};
+
+int main()
+{
+    //task1();
+    //task2();
+    //task3();
+    //task5();
+}
